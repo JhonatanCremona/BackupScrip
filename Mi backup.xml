@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                                                                           -->
+<!-- BDF v3.2.0 Image and backup definition file for Macrium Reflect v8.0                                      -->
+<!--                                                                                                           -->
+<!-- This file is a template XML to enable a Reflect backup or Image to be initiated from VB Script or an      -->
+<!-- MSDOS batch file.                                                                                         -->
+<!-- Simply modify this file if required and pass the file name as a parameter to reflect.exe.                 -->
+<backup_definition version="2.0" reflect="v8.0.6979">
+    <!-- backup or image file properties -->
+    <properties>
+        <!-- Internal use. Do not modify -->
+        <index_type>0</index_type>
+        <!-- Name that appears in the log when this definition is executed -->
+        <name>C:\Users\jfulguera\Documents\Reflect\Mi backup.xml</name>
+        <!-- Auto Verify Image or Backup File.  Y - Yes, N - No  -->
+        <autoverify>N</autoverify>
+        <!-- Auto Verify File System before backups.  Y - Yes, N - No  -->
+        <fsverify>Y</fsverify>
+        <!-- 0 - Disk Image, 1 - File and folder backup -->
+        <backup_type>1</backup_type>
+        <!-- 0 - Full, 1 - Incremental, 2 - Differential, 3 - Auto -->
+        <method>3</method>
+        <!-- Compression level. 0 - No compression, 1 - Medium, 2 - High -->
+        <!-- Applies to full file and folder backups and images only -->
+        <compression>1</compression>
+        <!-- Intelligent sector copy  Y - Yes, N - No -->
+        <!-- Applies to full disk images only -->
+        <intelligent>Y</intelligent>
+        <!-- Maximum file size of the destination file -->
+        <!-- 0 - Auto, otherwise file size in MB (1024 = 1GB) -->
+        <maxfilesize>0</maxfilesize>
+        <!-- Password protection. Empty - No Password, Otherwise enter password value -->
+        <!-- Applies to full file and folder backups and images only -->
+        <password Type="Clear"/>
+        <!-- AES Encryption. 0 - None, 1 - Standard 128 Bit, 2 - Medium 192 Bit, 3 High 256 bit -->
+        <!-- Applies to full file and folder backups and images only -->
+        <aes>1</aes>
+        <!-- Override the application defined timeout for batch jobs.  Y - Yes, N - No -->
+        <!-- Applies to all images and backups -->
+        <disable_timeout>N</disable_timeout>
+        <!-- comment for the backup -->
+        <comment/>
+        <!-- Power Saving settings -->
+        <power level="0" force="N">N</power>
+        <!-- WinPE Power Saving settings -->
+        <pepower level="0">N</pepower>
+        <!-- settings for email generation on backups -->
+        <email>
+            <!-- settings for successful backups -->
+            <success>
+                <!-- enable notifications for successful backup, Y = Yes, N = No -->
+                <enabled>N</enabled>
+                <!--  attach log file, Y = Yes, N = No -->
+                <attach_log>N</attach_log>
+                <!--  attach VSS log file, Y = Yes, N = No -->
+                <attach_vss_log>N</attach_vss_log>
+                <!-- recipients list, separate each recipient with a semi-colon (;) -->
+                <recipients/>
+                <!-- subject, plain text only -->
+                <subject/>
+                <!-- body, plain text only, use \n for a newline -->
+                <body/>
+            </success>
+            <!-- settings for warning backups -->
+            <warning>
+                <!-- enable notifications for warning backup, Y = Yes, N = No -->
+                <enabled>N</enabled>
+                <!--  attach log file, Y = Yes, N = No -->
+                <attach_log>N</attach_log>
+                <!--  attach VSS log file, Y = Yes, N = No -->
+                <attach_vss_log>N</attach_vss_log>
+                <!-- recipients list, separate each recipient with a semi-colon (;) -->
+                <recipients/>
+                <!-- subject, plain text only -->
+                <subject/>
+                <!-- body, plain text only, use \n for a newline -->
+                <body/>
+            </warning>
+            <!-- settings for failed backups -->
+            <failure>
+                <!-- enable notifications for failed backup, Y = Yes, N = No -->
+                <enabled>N</enabled>
+                <!--  attach log file, Y = Yes, N = No -->
+                <attach_log>N</attach_log>
+                <!--  attach VSS log file, Y = Yes, N = No -->
+                <attach_vss_log>N</attach_vss_log>
+                <!-- recipients list, separate each recipient with a semi-colon (;) -->
+                <recipients/>
+                <!-- subject, plain text only -->
+                <subject/>
+                <!-- body, plain text only, use \n for a newline -->
+                <body/>
+                <include_cancelled>N</include_cancelled>
+            </failure>
+        </email>
+        <!--the backup plan for this definition file-->
+        <plan>
+            <name>Plan de definición de backup</name>
+            <clone>N</clone>
+            <!--retention: retain = Y to keep files, N to remove files-->
+            <retention>
+                <full retain="y">
+                    <!--type: 0 = retain count files, 1 = retain by days, 2 = retain by weeks-->
+                    <period>1</period>
+                    <!--interval: retention type interval-->
+                    <interval>11</interval>
+                </full>
+                <diff retain="y">
+                    <!--type: 0 = retain count files, 1 = retain by days, 2 = retain by weeks-->
+                    <period>0</period>
+                    <!--interval: retention type interval-->
+                    <interval>4</interval>
+                </diff>
+                <inc retain="y">
+                    <!--type: 0 = retain count files, 1 = retain by days, 2 = retain by weeks-->
+                    <period>0</period>
+                    <!--interval: retention type interval-->
+                    <interval>10</interval>
+                </inc>
+                <!--flags:-->
+                <!--synth: Y/N - incremental forever retention rules-->
+                <!--applyto: 0 - similar backup sets only in the target folder, 1 - to the entire target folder-->
+                <!--before: Y/N - run retention rules before the backup-->
+                <flags synthetic_full="N" applyto="0" before="N"/>
+            </retention>
+        </plan>
+    </properties>
+    <!-- The source of the backup  -->
+    <source>
+        <!-- The following applies to Disk Images only -->
+        <image_entry id="1">
+            <!-- disk is the 1 based index of the disk to be imaged -->
+            <!-- id is the disk signature and is used in place of the disk index if specified -->
+            <disk/>
+            <!-- partition is the 1 based index of the partition on the disk -->
+            <partition/>
+        </image_entry>
+        <!-- File and folder backup. backup ntfs permissions. Y = Yes, N = No -->
+        <backup_ntfs_permissions>Y</backup_ntfs_permissions>
+        <!-- File and folder backup match type. 0=Similar, 1=Strict, 2=All-->
+        <file_and_folder_match_type>0</file_and_folder_match_type>
+        <!-- File and folder backup. follow system junction points and symbolic links Y = Yes, N = No -->
+        <follow_system_reparse_ponts>N</follow_system_reparse_ponts>
+        <!-- File and folder backup. follow user junction points and symbolic links Y = Yes, N = No -->
+        <follow_user_reparse_ponts>Y</follow_user_reparse_ponts>
+        <!-- Fie and folder backup filters. Increment the 'id' for each filter-->
+        <!-- Applies to file and folder backups only -->
+        <folder_filter id="1">
+            <!-- Folder to backup e.g. 'c:\my documents\'. -->
+            <folder FileSource="N"> C:\Users\jfulguera\Desktop\Nueva carpeta\</folder>
+            <!-- Include sub-folders Y or N -->
+            <sub_folders>Y</sub_folders>
+            <!-- File filter patterns, separated with semi colons -->
+            <include_file_filter>*.*</include_file_filter>
+            <exclude_file_filter>*.temp; *.tmp; *.bak; *.~*</exclude_file_filter>
+            <!-- Sub-folder filter patterns, separated with semi colons -->
+            <include_folder_filter/>
+            <exclude_folder_filter/>
+            <!-- Exclude System files Y or N -->
+            <exclude_system_files>N</exclude_system_files>
+            <!-- Exclude Hidden files Y or N -->
+            <exclude_hidden_files>N</exclude_hidden_files>
+        </folder_filter>
+        <!-- exchange backup Y or N -->
+        <exchange>N</exchange>
+        <!-- Exchange Components to be backed up -->
+        <exchange_components/>
+        <!-- Exchange metadata -->
+        <exchange_metadata/>
+        <!-- sql backup Y or N -->
+        <sql>N</sql>
+        <!-- databases -->
+        <sql_databases/>
+    </source>
+    <!-- Destination of backup or image file  -->
+    <destination>
+        <!-- Fully qualified path to destination directory. Can include the Volume GUID path  -->
+        <!-- The 'drive' attribute is the drive letter initially associated with the GUID path and is used when displaying path errors -->
+        <directory>C:\Users\jfulguera\Desktop\Nueva carpeta\</directory>
+        <!-- Destination file name.    -->
+        <!-- A empty name implies SetPrefix="Y"                               -->
+        <!-- SetPrefix is the unique Set ID and is the recommended setting    -->
+        <!-- Applies to full file and folder backups and Images               -->
+        <!-- SetPrefix. Y - Yes, N - No                                       -->
+        <file_name SetPrefix="Y"/>
+        <!-- Disk Space Management -->
+        <dsm>
+            <!-- free space to maintain on the target drive in gb -->
+            <free_space_threshold active="1">5</free_space_threshold>
+        </dsm>
+    </destination>
+    <netbios>DESKTOP-SCTLE0R</netbios>
+</backup_definition>
