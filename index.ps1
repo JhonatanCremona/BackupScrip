@@ -20,7 +20,7 @@ function BorrarOldArchiveIso {
                     Select-Object Name, LastWriteTime
     if ($fecha.values.count -gt 1) {
         Write-Host "Debes Borar el contenido"
-    } 
+        $fecha | ForEach-Object { Remove-Item -LiteralPath $_.Name }
     
 }
 
