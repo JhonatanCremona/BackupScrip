@@ -7,7 +7,22 @@ $nombreUser = [System.Environment]::UserName
 $urlLocal = "C:\Users\$nombreUser\Documents\ImagenBackup\"
 $pathNas = "\\192.168.0.101\grupos\Sistemas\Manuales\testing\$nombreUser"
 $pathJson = "C:\Users\jfulguera\Documents\visualProyects\datos1.json"
+#-Filter *.log
 
+Get-Childitem -Path $urlLocal -Filter *.txt | Remove-Item -Filter *.txt
+
+function BorrarOldArchiveIso {
+    param (
+
+    )
+    $fecha = Get-Childitem $urlLocal -Filter "*.*" |
+                Where-Object {$_.LastWriteTime -gt (get-date).AddDays(-7) } |
+                    Select-Object Name, LastWriteTime
+    if ($fecha.values.count -gt 1) {
+        Write-Host "Debes Borar el contenido"
+    } 
+    
+}
 
 
 #--------------Configuracion: Filtro para obtener el archivo ISO(mas reciente)------
