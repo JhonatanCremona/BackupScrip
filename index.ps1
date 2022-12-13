@@ -4,26 +4,56 @@
 #-----------VARIABLES GLOBALES--------------
 $nombreUser = [System.Environment]::UserName
 
-$urlLocal = "C:\Users\$nombreUser\Documents\ImagenBackup\"
+#$urlLocal = "C:\Users\$nombreUser\Documents\ImagenBackup\"
+$urlLocal = "C:\Users\jfulguera\Desktop\"
 $pathNas = "\\192.168.0.101\grupos\Sistemas\Manuales\testing\$nombreUser"
 $pathJson = "C:\Users\jfulguera\Documents\visualProyects\datos1.json"
 #-Filter *.log
 
 Get-Childitem -Path $urlLocal -Filter *.txt | Remove-Item -Filter *.txt
 
-function BorrarOldArchiveIso {
-    param (
+<#
+    ---------COMPROBAR EL ESPACIO DISPONIBLE DENTRO DEL DIRECTORIO LOCAL.-------
+#>
+$ListaDirLocal = Get-ChildItem -Force $urlLocal -Directory -Recurse -ErrorAction SilentlyContinue | % { $_.fullName }
+$respuesta = @()
+foreach ($content in $ListaDirLocal) {
 
-    )
-    $fecha = Get-Childitem $urlLocal -Filter "*.*" |
-                Where-Object {$_.LastWriteTime -gt (get-date).AddDays(-7) } |
-                    Select-Object Name, LastWriteTime
-    if ($fecha.values.count -gt 1) {
-        Write-Host "Debes Borar el contenido"
-        $fecha | ForEach-Object { Remove-Item -LiteralPath $_.Name }
-    
+    $o= Get-ChildItem –force $content –Recurse -ErrorAction SilentlyContinue | measure Length -s -ErrorAction SilentlyContinue | Select-Object -Property @{name='Directorio';expression={$content}}, @{n="Size(GB)";e={[math]::Round((($_.Sum)/1GB),2)}}
+
+    $respuesta+= $o
 }
 
+$respuesta = Get-ChildItem -Force $urlLocal -Recurse -ErrorAction SilentlyContinue | measure length -s -ErrorAction SilentlyContinue | Select-Object -Property @{n="PESO";e={[math]::Round((($_.Sum)/1GB),2)}}
+$respuesta.GetType().Name
+[int]$respuesta.PESO
+if ([int]$respuesta.PESO -gt 300) {
+    Write-Output "ADVERTENCIA! te estas quedando sin espacio"
+    BorrarOldArchiveIso("")
+} else {
+    Write-Output "Todavia queda espacio disponible"
+}
+
+function BorrarOldArchiveIso {
+    param (
+    )
+    $fecha = Get-Childitem $urlLocal -Filter "*.*" |
+                Where-Object {$_.LastWriteTime -lt (get-date).AddDays(-7) } |
+                    Select-Object Name, LastWriteTime
+
+    if ($fecha.values.count -gt 1) {
+        Write-Host "Debes Borar el contenido"
+        $fecha.GetType().Name
+        foreach ($fech in $fecha) {
+            write-host $fech.Name
+            $dato = $fech.Name
+            Write-Host $urlLocal$dato
+            remove-item -Path $urlLocal$dato -WhatIf
+        }
+    } else {
+        Write-Information "El directorio se encuentra estable de espacio libre"
+    }
+}
 
 #--------------Configuracion: Filtro para obtener el archivo ISO(mas reciente)------
 $dias = 2
