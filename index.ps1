@@ -4,17 +4,15 @@
 #-----------VARIABLES GLOBALES--------------
 $nombreUser = [System.Environment]::UserName
 
-#$urlLocal = "C:\Users\$nombreUser\Documents\ImagenBackup\"
-$urlLocal = "C:\Users\jfulguera\Desktop\"
+$urlLocal = "C:\Users\$nombreUser\Documents\ImagenBackup\"
+#$urlLocal = "C:\Users\jfulguera\Desktop\"
 $pathNas = "\\192.168.0.101\grupos\Sistemas\Manuales\testing\$nombreUser"
 $pathJson = "C:\Users\jfulguera\Documents\visualProyects\datos1.json"
-#-Filter *.log
 
 Get-Childitem -Path $urlLocal -Filter *.txt | Remove-Item -Filter *.txt
 
-<#
-    ---------COMPROBAR EL ESPACIO DISPONIBLE DENTRO DEL DIRECTORIO LOCAL.-------
-#>
+#---------COMPROBAR EL ESPACIO DISPONIBLE DENTRO DEL DIRECTORIO LOCAL.-------
+
 $ListaDirLocal = Get-ChildItem -Force $urlLocal -Directory -Recurse -ErrorAction SilentlyContinue | % { $_.fullName }
 $respuesta = @()
 foreach ($content in $ListaDirLocal) {
@@ -28,10 +26,10 @@ $respuesta = Get-ChildItem -Force $urlLocal -Recurse -ErrorAction SilentlyContin
 $respuesta.GetType().Name
 [int]$respuesta.PESO
 if ([int]$respuesta.PESO -gt 300) {
-    Write-Output "ADVERTENCIA! te estas quedando sin espacio"
+    Write-Warning "ADVERTENCIA! te estas quedando sin espacio"
     BorrarOldArchiveIso("")
 } else {
-    Write-Output "Todavia queda espacio disponible"
+    Write-Warning "Todavia queda espacio disponible"
 }
 
 function BorrarOldArchiveIso {
@@ -134,14 +132,5 @@ if ($result) {
     $descripcion = "No se encontro ninguna Imagen en la maquina del usuario"
     GenerarJson("")
 
-    Write-Output "-----!Error--------"
-    
+    Write-Output "-----!Error--------"   
 }
-
-Write-Host $result
-
-
-<#
-    BORRAR Archivos del NAS -
-    Crear Carpetas con fechas - que contengan el 
-#>
