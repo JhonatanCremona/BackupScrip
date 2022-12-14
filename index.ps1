@@ -4,12 +4,9 @@
 #-----------VARIABLES GLOBALES--------------
 $nombreUser = [System.Environment]::UserName
 
-$urlLocal = "C:\Users\$nombreUser\Documents\ImagenBackup\"
-#$urlLocal = "C:\Users\jfulguera\Desktop\"
+$urlLocal = "D:\ImagenBackup"
 $pathNas = "\\192.168.0.101\grupos\Sistemas\Manuales\testing\$nombreUser"
 $pathJson = "C:\Users\jfulguera\Documents\visualProyects\datos1.json"
-
-Get-Childitem -Path $urlLocal -Filter *.txt | Remove-Item -Filter *.txt
 
 #---------COMPROBAR EL ESPACIO DISPONIBLE DENTRO DEL DIRECTORIO LOCAL.-------
 
@@ -21,6 +18,7 @@ foreach ($content in $ListaDirLocal) {
 
     $respuesta+= $o
 }
+write-host $respuesta
 
 $respuesta = Get-ChildItem -Force $urlLocal -Recurse -ErrorAction SilentlyContinue | measure length -s -ErrorAction SilentlyContinue | Select-Object -Property @{n="PESO";e={[math]::Round((($_.Sum)/1GB),2)}}
 $respuesta.GetType().Name
@@ -59,7 +57,15 @@ $Time = (Get-Date).AddDays(-($dias))
 $Time
 #$result = Get-ChildItem -Path C:\Users\$nombreUser\Documents\ImagenBackup\ TEST.rar -Recurse -ErrorAction SilentlyContinue -Force | Where-Object { $.lastWriteTime -gt $Time }
 
-$result = Get-ChildItem -Path $urlLocal TEST2.rar -Recurse -ErrorAction SilentlyContinue -Force
+#-------------Obtener el nombre del archivo----------------
+$listaDir = Get-Childitem $urlLocal -Filter "*.*" |
+                Where-Object {$_.LastWriteTime -gt (Get-Date -DisplayHint Date).AddDays(-1)} | 
+                    % { $_.Name }
+$listaDir[0]
+$respuesta = @{}
+
+
+$result = Get-ChildItem -Path $urlLocal $listaDir[0] -Recurse -ErrorAction SilentlyContinue -Force
 
 #--------------Configuracion de Correo electronico-------------------
 $usuario = "jfulguera@creminox.com"
@@ -106,15 +112,15 @@ function GenerarJson {
 
     } else {
         Write-Output "Existe este usuario"
-    }
-    
+    }    
 }
-
 
 #----------------ENVIAR IMAGEN ISO AL NAS----------------------------
 Write-Output "Proceso en marcha..."
 if ($result) {
-    Copy-Item -Path $urlLocal\testing.js -Destination $pathNas -Force
+    $archivo = $listaDir[0]
+    $archivo.GetType().Name
+    Copy-Item -Path "$urlLocal\$archivo" -Destination $pathNas -Force
 
     #-----------ENVIAR CORREO 365 (CASO DE EXITO) -------------------
     #Send-MailMessage -SmtpServer smtp.office365.com -Port 587 -UseSsl -From jfulguera@creminox.com -To sistemas@creminox.com -Subject "Resultado Imagen Backup" -Body "En la maquina de $nombreUser se realizo el backup de Forma Exitosaa!😀" -Credential $credential
