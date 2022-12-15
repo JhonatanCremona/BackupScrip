@@ -51,9 +51,12 @@ $credential = New-Object System.Management.Automation.PSCredential -ArgumentList
 
 #-------------Obtener el nombre del archivo----------------
 $listaDir = Get-Childitem $urlLocal -Filter "*.*" |
-                Where-Object {$_.LastWriteTime -gt (Get-Date -DisplayHint Date).AddDays(-1)} | 
+                Where-Object {$_.LastWriteTime -gt (Get-Date -DisplayHint Date).AddDays(-7)} | 
                     % { $_.Name }
-$listaDir[0]
+$listaDir.GetType().Name
+if ( $listDir.value.count -gt 1 ) {
+    Write-Warning "Tenemos un objeto"
+}
 
 $result = Get-ChildItem -Path $urlLocal $listaDir[0] -Recurse -ErrorAction SilentlyContinue -Force
 
