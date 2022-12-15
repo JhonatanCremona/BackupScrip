@@ -69,7 +69,7 @@ $result = Get-ChildItem -Path $urlLocal $listaDir[0] -Recurse -ErrorAction Silen
 
 #--------------Configuracion de Correo electronico-------------------
 $usuario = "jfulguera@creminox.com"
-$pass = "Cremona.2022"
+$pass = "++++++"
 [SecureString]$securepassword = $pass | ConvertTo-SecureString -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $usuario, $securepassword
 

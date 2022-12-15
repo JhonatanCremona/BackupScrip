@@ -45,7 +45,7 @@ function GenerarJson {
 }
 #--------------Configuracion de Correo electronico-------------------
 $usuario = "jfulguera@creminox.com"
-$pass = "Cremona.2022"
+$pass = "**********"
 [SecureString]$securepassword = $pass | ConvertTo-SecureString -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $usuario, $securepassword
 
@@ -57,7 +57,6 @@ $listaDir.GetType().Name
 if ( $listDir.value.count -gt 1 ) {
     Write-Warning "Tenemos un objeto"
 }
-
 $result = Get-ChildItem -Path $urlLocal $listaDir[0] -Recurse -ErrorAction SilentlyContinue -Force
 
 #----------------ENVIAR IMAGEN ISO AL NAS----------------------------
