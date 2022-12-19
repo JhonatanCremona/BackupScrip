@@ -1,6 +1,6 @@
 $nombreUser = [System.Environment]::UserName
 
-$urlLocal = "D:\ImagenBackup"
+$urlLocal = "E:\ImagenBackup"
 $pathNas = "\\192.168.0.247\Virtuales\$nombreUser"
 $pathJson = "\\192.168.0.101\grupos\Sistemas\Json-BackupPc\datos1.json"
 
@@ -45,18 +45,16 @@ function GenerarJson {
 }
 #--------------Configuracion de Correo electronico-------------------
 $usuario = "jfulguera@creminox.com"
-$pass = "**********"
+$pass = "Cremona.2022"
 [SecureString]$securepassword = $pass | ConvertTo-SecureString -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $usuario, $securepassword
 
 #-------------Obtener el nombre del archivo----------------
 $listaDir = Get-Childitem $urlLocal -Filter "*.*" |
-                Where-Object {$_.LastWriteTime -gt (Get-Date -DisplayHint Date).AddDays(-7)} | 
+                Where-Object {$_.LastWriteTime -gt (Get-Date -DisplayHint Date).AddDays(-1)} | 
                     % { $_.Name }
-$listaDir.GetType().Name
-if ( $listDir.value.count -gt 1 ) {
-    Write-Warning "Tenemos un objeto"
-}
+$listaDir[0]
+
 $result = Get-ChildItem -Path $urlLocal $listaDir[0] -Recurse -ErrorAction SilentlyContinue -Force
 
 #----------------ENVIAR IMAGEN ISO AL NAS----------------------------

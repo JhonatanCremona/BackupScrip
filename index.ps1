@@ -44,7 +44,7 @@ function BorrarOldArchiveIso {
             write-host $fech.Name
             $dato = $fech.Name
             Write-Host $urlLocal$dato
-            remove-item -Path $urlLocal$dato -WhatIf
+            remove-item -Path "\\192.168.0.247\Virtuales\Nrearte\8CF74997E1AB70CC-00-00.mrimg" -Force
         }
     } else {
         Write-Information "El directorio se encuentra estable de espacio libre"
