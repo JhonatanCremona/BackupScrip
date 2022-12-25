@@ -1,0 +1,30 @@
+[
+  {
+    "userId": 0,
+    "Nombre": "sujetoPrueba",
+    "Resultado": "Tarea finalizada con Exito!",
+    "estado": "True",
+    "Fecha": "martes 12/13/2022 11:02"
+  },
+  {
+    "userId": 1,
+    "Nombre": "nrearte",
+    "Resultado": "No se encontro ninguna Imagen en la maquina del usuario",
+    "estado": "false",
+    "Fecha": "jueves 12/15/2022 08:08"
+  },
+  {
+    "userId": 3,
+    "Nombre": "jfulguera",
+    "Resultado": "No se encontro ninguna Imagen en la maquina del usuario",
+    "estado": "false",
+    "Fecha": "jueves 12/15/2022 08:18"
+  },
+  {
+    "userId": 4,
+    "Nombre": "jhona",
+    "Resultado": "Tarea finalizada con Exito!",
+    "estado": "True",
+    "Fecha": "domingo 12/25/2022 15:21"
+  }
+]

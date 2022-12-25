@@ -1,9 +1,15 @@
-#$nombreUser = [System.Environment]::UserName
-$nombreUser = "GuillermoNetbook"
+$nombreUser = [System.Environment]::UserName
+#$nombreUser = "GuillermoNetbook"
 
-$urlLocal = "G:\ImagenBackup"
-$pathNas = "\\192.168.0.247\Virtuales\$nombreUser"
-$pathJson = "\\192.168.0.101\grupos\Sistemas\Json-BackupPc\datos1.json"
+<#
+    $urlLocal = "G:\ImagenBackup"
+    $pathNas = "\\192.168.0.247\Virtuales\$nombreUser"
+    $pathJson = "\\192.168.0.101\grupos\Sistemas\Json-BackupPc\datos1.json"
+#>
+
+$urlLocal = "C:\Users\$nombreUser\OneDrive\Documentos\ProyectShell\BackupScrip\DiscoLocal-ImagenBackup"
+$pathNas = "C:\Users\$nombreUser\OneDrive\Documentos\ProyectShell\BackupScrip\Nas\$nombreUser"
+$pathJson = "C:\Users\$nombreUser\OneDrive\Documentos\ProyectShell\BackupScrip\Json\datos1.json"
 
 $datosJson = Get-Content -Path $pathJson | ConvertFrom-Json
 #-----------------CREAR CARPETA DE USUARIO EN EL NAS------------------
