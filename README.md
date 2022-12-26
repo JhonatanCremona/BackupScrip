@@ -2,7 +2,7 @@
 
 _Con este script puedes transladar una imagen.ISO a un servidor ( NAS ) Y LUEGO CREAR UN documento JSON --> En forma de reporte. Para que este sea compartido y enviado al admin de sistemas IT, atraves de mensaje de correo_
 
-![screen-install](screen-install.png)
+![screen-install](C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\images\WhatsApp Image 2022-12-25 at 19.44.47.jpeg)
 
 ## Comenzando 🚀
 
