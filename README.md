@@ -2,6 +2,8 @@
 
 _Con este script puedes transladar una imagen.ISO a un servidor ( NAS ) Y LUEGO CREAR UN documento JSON --> En forma de reporte. Para que este sea compartido y enviado al admin de sistemas IT, atraves de mensaje de correo_
 
+![screen-install](screen-install.png)
+
 ## Comenzando 🚀
 
 _Descargar Reflect._
