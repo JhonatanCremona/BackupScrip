@@ -1,4 +1,4 @@
-# Backup con Reflect y powershell
+# Backup con Reflect y Powershell
 
 _Con este script puedes transladar una imagen.ISO a un servidor ( NAS ) Y LUEGO CREAR UN documento JSON --> En forma de reporte. Para que este sea compartido y enviado al admin de sistemas IT, atraves de mensaje de correo_
 
@@ -13,9 +13,7 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
-
-
+_Instalar en windows PowerShell 7_
 
 ### Instalación 🔧
 
