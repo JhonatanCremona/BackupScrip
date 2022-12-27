@@ -101,6 +101,7 @@ if ( $respuesta ) {
     $archivo = $listaDir
 }
 
+
 $result = Get-ChildItem -Path "$urlLocal\$archivo" -Recurse -ErrorAction SilentlyContinue -Force
 
 #===========================================================================
@@ -108,9 +109,16 @@ $result = Get-ChildItem -Path "$urlLocal\$archivo" -Recurse -ErrorAction Silentl
 #===========================================================================
 
 Write-Output "Proceso en marcha..."
+
+foreach ($lista in $listaDir) {
+    Write-Host $lista + "error"
+    Robocopy C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Nas\jfulguera /E /Z /ZB /R:5 /TBD /NP /V /XF "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup\$lista"
+}
+
+
 if ($result) {
     
-    Copy-Item -Path "$urlLocal\$archivo" -Destination $pathNas -Force
+    #Copy-Item -Path "$urlLocal\$archivo" -Destination $pathNas -Force
     GenerarJson -descripcion "Tarea finalizada con Exito!" -estado "true"
 
     Write-Output "Tarea finalizada con Exito!"
