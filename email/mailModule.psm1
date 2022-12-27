@@ -1,32 +1,35 @@
-Install-Package -Name 'MimeKit' -Source "https://www.nuget.org/api/v2" -SkipDependencies
-Install-Package -Name 'MailKit' -Source "https://www.nuget.org/api/v2"
+Add-Type -Path "C:\Program Files\PackageManagement\NuGet\Packages\MimeKit.3.4.3\lib\netstandard2.0\MimeKit.dll"
+Add-Type -Path "C:\Program Files\PackageManagement\NuGet\Packages\MailKit.3.4.3\lib\netstandard2.0\MailKit.dll"
 
-function Send-MailKitMessage {
+function Send-MailKitMessage{
     [CmdletBinding()]
-    param (
-        [Parameter(Mendatory)]
-        [String]$From,
-        [Parameter(Mendatory)]
+    Param(
+        [Parameter(Mandatory)]
+        [string]$From,
+        [Parameter(Mandatory)]
         $To,
         [Parameter()]
-        $CC, 
+        $CC,
         [Parameter()]
         $BCC,
         [Parameter()]
-        [String]$Subject="",
+        [string]$Subject="",
         [Parameter()]
-        [String]$Body = "",
+        [string]$Body="",
         [Parameter()]
         $Attachments,
         [Parameter(Mandatory)]
-        [String]$SMPTServer,
+        [string]$SMTPServer,
         [Parameter()]
-        [int32]$Port = 25,
+        [int]$Port=25,
         [Parameter()]
         [switch]$BodyAsHtml,
         [Parameter()]
-        $credenciales
+        $Credential
     )
+    Write-Output $SMTPServer
+
+    
     $SMTP=New-Object MailKit.Net.Smtp.SmtpClient
     $Message=New-Object MimeKit.MimeMessage
     $Builder=New-Object MimeKit.BodyBuilder
@@ -75,4 +78,5 @@ function Send-MailKitMessage {
 
     $SMTP.Disconnect($true)
     $SMTP.Dispose()
+    
 }

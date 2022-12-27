@@ -15,8 +15,8 @@ $SMTP = New-Object MailKit.Net.Smtp.SmtpClient
 $Message = New-Object MimeKit.MimeMessage
 $Builder = New-Object MimeKit.BodyBuilder
 
-#$Account = Import-Clixml -Path C:\Users\jhona\OneDrive\Documentos\ProyectShell\BackupScrip\email\email.xml
-$Account = Import-Clixml -Path C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\email\emailtest.xml
+$Account = Import-Clixml -Path C:\Users\jhona\OneDrive\Documentos\ProyectShell\BackupScrip\email\email.xml
+#$Account = Import-Clixml -Path C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\email\emailtest.xml
 
 $Message.From.add("jfulguera@creminox.com")
 $Message.to.Add("jhonatanful@outlook.es")
