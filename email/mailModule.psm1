@@ -29,7 +29,6 @@ function Send-MailKitMessage{
     )
     Write-Output $SMTPServer
 
-    
     $SMTP=New-Object MailKit.Net.Smtp.SmtpClient
     $Message=New-Object MimeKit.MimeMessage
     $Builder=New-Object MimeKit.BodyBuilder
@@ -78,5 +77,4 @@ function Send-MailKitMessage{
 
     $SMTP.Disconnect($true)
     $SMTP.Dispose()
-    
 }
