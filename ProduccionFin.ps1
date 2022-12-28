@@ -65,24 +65,7 @@ function GenerarJson {
         Write-Output "Existe este usuario"
     }    
 }
-#===========================================================================
-# Tab 2 - Configuracion de Correo electronico
-#===========================================================================
 
-if ($datosJson.values.count -gt 8) {
-    $Parametros = @{
-        From = "jfulguera@creminox.com"
-        To = @("jhonatanful@outlook.es", "sistemas@creminox.com")
-        Subject = "Diagnostico ImagenBackup-Pc Cremona"
-        Body = "<h1>Resultado</h1> <p>Descripcion prueba en el archivo adjunto</p>"
-        Attachments = @("C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json", "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json")
-        SMTPServer = 'smtp-legacy.office365.com'
-        Port = 587
-        Credential = $Cuenta
-        BodyAsHtml = $true
-    }
-    Send-MailKitMessage @Parametros
-}
 #===========================================================================
 #  - Obtener el nombre del archivo
 #===========================================================================
@@ -119,6 +102,7 @@ foreach ($lista in $listaDir) {
 if ($result) {
     
     #Copy-Item -Path "$urlLocal\$archivo" -Destination $pathNas -Force
+    Robocopy "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup" "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Nas\jfulguera" $archivo /z /j /copy:D
     GenerarJson -descripcion "Tarea finalizada con Exito!" -estado "true"
 
     Write-Output "Tarea finalizada con Exito!"
@@ -127,4 +111,23 @@ if ($result) {
     GenerarJson -descripcion "No se encontro ninguna Imagen en la maquina del usuario" -estado "false"
 
     Write-Output "-----!Error--------"   
+}
+
+#===========================================================================
+# Tab 2 - Configuracion de Correo electronico
+#===========================================================================
+
+if ($datosJson.values.count -gt 8) {
+    $Parametros = @{
+        From = "jfulguera@creminox.com"
+        To = @("jhonatanful@outlook.es", "sistemas@creminox.com")
+        Subject = "Diagnostico ImagenBackup-Pc Cremona"
+        Body = "<h1>Resultado</h1> <p>Descripcion prueba en el archivo adjunto</p>"
+        Attachments = @("C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json", "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json")
+        SMTPServer = 'smtp-legacy.office365.com'
+        Port = 587
+        Credential = $Cuenta
+        BodyAsHtml = $true
+    }
+    Send-MailKitMessage @Parametros
 }
