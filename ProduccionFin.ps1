@@ -31,7 +31,9 @@ if(!(test-path $pathNas))
       New-Item -ItemType Directory -Path $pathNas
       Write-Output "Se creo una carpeta con el nombre del usuarioLocal"
 }
-#------------------METODOS--------------------
+#===========================================================================
+# METODOS
+#===========================================================================
 function GenerarJson {
     param (
         [Parameter(Mandatory)]
@@ -93,23 +95,15 @@ $result = Get-ChildItem -Path "$urlLocal\$archivo" -Recurse -ErrorAction Silentl
 
 Write-Output "Proceso en marcha..."
 
-foreach ($lista in $listaDir) {
-    Write-Host $lista + "error"
-    Robocopy C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Nas\jfulguera /E /Z /ZB /R:5 /TBD /NP /V /XF "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup\$lista"
-}
-
-
 if ($result) {
     
-    #Copy-Item -Path "$urlLocal\$archivo" -Destination $pathNas -Force
-    Robocopy "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup" "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Nas\jfulguera" $archivo /z /j /copy:D
+    Robocopy $urlLocal $pathNas $archivo /E /w:5 /r:2 /COPY:DATSOU /DCOPY:DAT /MT
     GenerarJson -descripcion "Tarea finalizada con Exito!" -estado "true"
 
     Write-Output "Tarea finalizada con Exito!"
 }else {
 
     GenerarJson -descripcion "No se encontro ninguna Imagen en la maquina del usuario" -estado "false"
-
     Write-Output "-----!Error--------"   
 }
 

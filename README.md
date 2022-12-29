@@ -6,14 +6,13 @@ _Con este script puedes transladar una imagen.ISO a un servidor ( NAS ) Y LUEGO 
 
 ## Comenzando 🚀
 
-_Descargar Reflect._
-
 Mira **Deployment** para conocer como desplegar el proyecto.
 
 
 ### Pre-requisitos 📋
 
 _Instalar en windows PowerShell 7_
+_Descargar Reflect._
 
 ### Instalación 🔧
 
@@ -47,5 +46,5 @@ _Instalar en windows PowerShell 7_
     git clone "https://github.com/JhonatanCremona/BackupScrip.git"
     ```
 - Updates
-  - Fixes the default windows update scheme
+  - version 1.2v
 
