@@ -21,11 +21,11 @@ _Instalar en windows PowerShell 7_
   - presionar las teclas de windows + r
   - Escribir "explorer.exe windowsdefender:" y luego presionar el boton aceptar
 - Descargar
-      _Instalar Moduls MimeKit_
+  _Instalar Moduls MimeKit_
     ```
     Install-Package -Name 'MimeKit' -Source "https://www.nuget.org/api/v2" -SkipDependencies
     ```
-      _Instalar Moduls MailKit_
+  _Instalar Moduls MailKit_
     ```
     Install-Package -Name 'MailKit' -Source "https://www.nuget.org/api/v2"
     ```
