@@ -25,9 +25,11 @@ _Instalar en windows PowerShell 7_
     ```
     Install-Package -Name 'MimeKit' -Source "https://www.nuget.org/api/v2" -SkipDependencies
     ```
-    _Instalar Moduls MailKit_
+      _Instalar Moduls MailKit_
+    ```
     Install-Package -Name 'MailKit' -Source "https://www.nuget.org/api/v2"
     ```
+  
   - Descargar el archivo "ProduccionFin.ps1"
   - Has recommended settings for each type of system
 - Descargar proyecto completo
