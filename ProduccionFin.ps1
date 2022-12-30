@@ -116,8 +116,8 @@ if ($datosJson.values.count -gt 8) {
         From = "jfulguera@creminox.com"
         To = @("jhonatanful@outlook.es", "sistemas@creminox.com")
         Subject = "Diagnostico ImagenBackup-Pc Cremona"
-        Body = "<h1>Resultado</h1> <p>Descripcion prueba en el archivo adjunto</p>"
-        Attachments = @("C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json", "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json")
+        Body = "<h1>Resultado</h1> <p>En el archivo adjunto podras descargar el repórte de todas las maquinas.</p>"
+        Attachments = @($pathNas , $pathNas)
         SMTPServer = 'smtp-legacy.office365.com'
         Port = 587
         Credential = $Cuenta

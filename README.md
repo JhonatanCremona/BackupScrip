@@ -1,6 +1,6 @@
 # Backup con Reflect y Powershell
 
-_Este script tiene la funcionalidad de transferir una imagen.iso de una Pc a un servidor ( Nas ). Ademnas genera un reporte del proceso en un archivo Json que luego sera adjuntado en un mensaje de Correo._
+_Este script tiene la funcionalidad de transferir una imagen.iso (Clon del disco de una Pc) a un servidor ( Nas ). Ademnas genera un reporte del proceso en un archivo Json que luego sera adjuntado en un mensaje de Correo._
 
 ![screen-install](screen-install.png)
 
@@ -45,4 +45,3 @@ _Descargar Reflect._
     ```
 - Updates
   - version 1.2v
-
