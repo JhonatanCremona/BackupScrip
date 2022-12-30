@@ -1,25 +1,15 @@
 #===========================================================================
 # Tab 1 - Install Moduls
 #===========================================================================
-Import-Module C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\email\mailModule.psm1
-$Cuenta = Import-Clixml -Path C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\email\emailtest.xml
+Import-Module C:\Users\jfulguera\Documents\transferirImagen\email\mailModule.psm1
+$Cuenta = Import-Clixml -Path C:\Users\jfulguera\Documents\transferirImagen\email\emailtest.xml
 
 $nombreUser = [System.Environment]::UserName
 #$nombreUser = "GuillermoNetbook"
 
-<#
     $urlLocal = "G:\ImagenBackup"
     $pathNas = "\\192.168.0.247\Virtuales\$nombreUser"
     $pathJson = "\\192.168.0.101\grupos\Sistemas\Json-BackupPc\datos1.json"
-#>
-<#
-    $urlLocal = "C:\Users\$nombreUser\OneDrive\Documentos\ProyectShell\BackupScrip\DiscoLocal-ImagenBackup"
-    $pathNas = "C:\Users\$nombreUser\OneDrive\Documentos\ProyectShell\BackupScrip\Nas\$nombreUser"
-    $pathJson = "C:\Users\$nombreUser\OneDrive\Documentos\ProyectShell\BackupScrip\Json\datos1.json"
-#>
-$urlLocal = "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\DiscoLocal-ImagenBackup"
-$pathNas = "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Nas\$nombreUser"
-$pathJson= "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json"
 
 $datosJson = Get-Content -Path $pathJson | ConvertFrom-Json
 #===========================================================================
@@ -116,8 +106,8 @@ if ($datosJson.values.count -gt 8) {
         From = "jfulguera@creminox.com"
         To = @("jhonatanful@outlook.es", "sistemas@creminox.com")
         Subject = "Diagnostico ImagenBackup-Pc Cremona"
-        Body = "<h1>Resultado</h1> <p>Descripcion prueba en el archivo adjunto</p>"
-        Attachments = @("C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json", "C:\Users\jfulguera\Desktop\ProyectScript\BackupScrip\Json\datos1.json")
+        Body = "<h1>Resultado</h1> <p>En el adjunto de este mensaje vas a poder descargar el informe</p>"
+        Attachments = @($pathNas, $pathNas)
         SMTPServer = 'smtp-legacy.office365.com'
         Port = 587
         Credential = $Cuenta
