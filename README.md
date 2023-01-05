@@ -1,6 +1,6 @@
 # Backup con Reflect y Powershell
 
-_Este script tiene la funcionalidad de transferir una imagen.iso de una Pc a un servidor ( Nas ). Ademas este genera un reporte del proceso, en archivo Json, que luego sera adjuntado en un mensaje de Correo._
+_Este script tiene la funcionalidad de transferir una imagen.iso de una Pc a un servidor ( Nas ). Ademas este genera un reporte del proceso, exporta un archivo Json, que luego sera adjuntado en un mensaje de Correo._
 
 ![screen-install](screen-install.png)
 
@@ -9,8 +9,10 @@ _Este script tiene la funcionalidad de transferir una imagen.iso de una Pc a un 
 ### Pre-requisitos 📋
 
 _Instalar en windows PowerShell 7_
+   <a id="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3" />descargar text
 
 _Descargar Reflect._
+  -Se encuentra en el server
 
 ### Instalación 🔧
 
@@ -30,7 +32,9 @@ _Descargar Reflect._
   
   - Descargar el archivo "ProduccionFin.ps1"
 - Descargar proyecto completo
-  - abrir gitBash
+  - abrir gitBash (es Necesario tener instalado GitBash)
+     <a id="https://gitforwindows.org/" />GitDownload text
+
     _inicializar proyecto git_
 
     ```
