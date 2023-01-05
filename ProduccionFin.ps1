@@ -5,7 +5,7 @@ Import-Module C:\Users\jfulguera\Documents\transferirImagen\email\mailModule.psm
 $Cuenta = Import-Clixml -Path C:\Users\jfulguera\Documents\transferirImagen\email\emailtest.xml
 
 $nombreUser = [System.Environment]::UserName
-#$nombreUser = "GuillermoNetbook"
+#$nombreUser = ""
 
     $urlLocal = "G:\ImagenBackup"
     $pathNas = "\\192.168.0.247\Virtuales\$nombreUser"

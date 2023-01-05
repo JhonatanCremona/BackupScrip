@@ -44,10 +44,14 @@ _Descargar Reflect._
     git clone "https://github.com/JhonatanCremona/BackupScrip.git"
     ```
 - Configuracion en el Programador de tareas
-  _Agregar argumentos (obligatorio)_
-    ```
-    -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "& ruta al script a ejecutar"
-    ```
+    _Ejecutar la aplicacion con powershell 7_
+      ```
+      pwsh.exe
+      ```
+    _Agregar argumentos (obligatorio)_
+      ```
+      -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "& ruta al script a ejecutar"
+      ```
 - Updates
   - version 1.2v
 
